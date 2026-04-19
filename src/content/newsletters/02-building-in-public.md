@@ -13,7 +13,7 @@ image: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?auto=format&fi
 1. [The Problem](#the-problem) — a GitHub profile that contradicts the CV
 2. [The Tension](#the-tension) — why perfectionism keeps repos private
 3. [What Changed](#what-changed) — 29 applications, zero responses
-4. [What I Am Shipping](#what-i-am-shipping) — BEAT consensus and Rustflight in detail
+4. [What I Am Shipping](#what-i-am-shipping) — BEAT consensus and Oxiflight in detail
 5. [On READMEs](#on-readmes) — the most important file in the repo
 6. [On Using AI to Build](#on-using-ai-to-build) — Claude, honesty, and understanding
 7. [The Daily Habit](#the-daily-habit) — contribution graphs and structure
@@ -37,7 +37,7 @@ The CV says "Rust, Go, distributed systems, embedded." The GitHub says nothing. 
 
 ## The Tension
 
-I know why I have not made them public. The code is not finished. There are stubs, there are TODOs, there are entire subsystems that only exist as phase outlines. Rustflight has three complete phases and twelve more planned. BEAT works but there are rough edges I have not polished.
+I know why I have not made them public. The code is not finished. There are stubs, there are TODOs, there are entire subsystems that only exist as phase outlines. Oxiflight has three complete phases and twelve more planned. BEAT works but there are rough edges I have not polished.
 
 The excuse is always "it is not ready yet." But that is perfectionism dressed up as quality control. Nobody ships a perfect v1. Linux started as "just a hobby, won't be big and professional." The irony is that I am more likely to be judged for having nothing visible than for having something rough.
 
@@ -69,7 +69,7 @@ The deployment story is real: Docker Compose for local dev clusters, Helm charts
 
 Current focus is integrating it with a market data pipeline — a reference implementation for distributed agreement on order state. Further out, I am interested in adapting ideas from newer async BFT research, particularly Dumbo-NG's continuous pipeline and Bolt-Dumbo's optimistic fast-path, into this codebase.
 
-### Rustflight
+### Oxiflight
 
 An embedded Rust rewrite of Betaflight flight controller firmware, targeting STM32F4 microcontrollers. This did not start as a firmware rewrite. It started because blackbox logging data was corrupting and I wanted to implement error correction coding to make it more reliable. Then I thought "why not try making some of this safer in Rust." That escalated.
 
@@ -123,7 +123,7 @@ Two threads running in parallel with the project work:
 
 I am reading these papers not to implement all of them, but to understand where the ideas could improve my existing BEAT codebase. Dumbo-NG's continuous pipeline approach is particularly interesting for throughput. I am also curious about post-quantum cryptography for BFT — replacing the Ristretto255 and BLS12-381 primitives with lattice-based alternatives. That would be genuinely novel territory.
 
-**Computer architecture.** Professor Onur Mutlu's lectures from ETH Zurich and CMU remain some of the best educational material available on the internet. I am currently working through the content on memory hierarchies, DRAM behaviour, and processing-in-memory (PIM). PIM is fascinating — the idea that DRAM can perform bulk bitwise operations and majority functions by exploiting timing constraint violations, potentially enabling massive parallelism for specific workloads without moving data to the CPU. This feeds directly into how I think about performance in both the embedded (Rustflight) and distributed systems (BEAT) contexts.
+**Computer architecture.** Professor Onur Mutlu's lectures from ETH Zurich and CMU remain some of the best educational material available on the internet. I am currently working through the content on memory hierarchies, DRAM behaviour, and processing-in-memory (PIM). PIM is fascinating — the idea that DRAM can perform bulk bitwise operations and majority functions by exploiting timing constraint violations, potentially enabling massive parallelism for specific workloads without moving data to the CPU. This feeds directly into how I think about performance in both the embedded (Oxiflight) and distributed systems (BEAT) contexts.
 
 ---
 
@@ -141,9 +141,9 @@ This newsletter exists on a site that was itself mostly unfinished for months. I
 
 Concrete goals for the next few weeks:
 
-- Make BEAT and Rustflight repos public on GitHub with proper READMEs
-- Pin BEAT, Rustflight, and K8s cluster repos. Unpin dotfiles.
-- Complete Rustflight Phase 3 (filter pipeline) and start Phase 4 (PID controller)
+- Make BEAT and Oxiflight repos public on GitHub with proper READMEs
+- Pin BEAT, Oxiflight, and K8s cluster repos. Unpin dotfiles.
+- Complete Oxiflight Phase 3 (filter pipeline) and start Phase 4 (PID controller)
 - Write detailed project articles for both (already in progress on this site)
 - Send 3-5 targeted job applications per week with the updated CV and portfolio
 - Continue PPL flight training when slots are available

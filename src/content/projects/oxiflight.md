@@ -1,7 +1,7 @@
 ---
-title: "Rustflight: Rewriting Betaflight in Rust for STM32"
+title: "Oxiflight: Rewriting Betaflight in Rust for STM32"
 description: "An embedded Rust rewrite of Betaflight flight controller firmware — started from a blackbox logging problem, turned into a ground-up firmware project on real hardware."
-slug: "rustflight"
+slug: "oxiflight"
 published: 2026-04-01
 tags: ["rust", "embedded", "stm32", "betaflight", "firmware", "no-std"]
 author: "Robert Shalders"
@@ -20,16 +20,16 @@ That escalated.
 
 ## What It Is Now
 
-Rustflight is a ground-up Rust rewrite of Betaflight flight controller firmware, targeting STM32F4 microcontrollers. It is not a wrapper around the existing C code. It is a clean implementation using the Embassy async runtime, with the Betaflight C source as a reference for behaviour and algorithms.
+Oxiflight is a ground-up Rust rewrite of Betaflight flight controller firmware, targeting STM32F4 microcontrollers. It is not a wrapper around the existing C code. It is a clean implementation using the Embassy async runtime, with the Betaflight C source as a reference for behaviour and algorithms.
 
 The project is structured as a Cargo workspace with separated concerns:
 
-- **rustflight-app** — the Embassy async entry point, USB CDC serial, DFU bootloader
-- **rustflight-hal** — trait definitions (GyroDriver, MotorOutput, etc.)
-- **rustflight-drivers** — sensor drivers for BMI270 and MPU6000 gyroscopes over SPI
-- **rustflight-bsp-stm32f4** — board support for SpeedyBee F405 and DarwinFPV F411
-- **rustflight-math** — pure no_std trigonometry, unit conversions, helpers
-- **rustflight-filter** — PT1, PT2, PT3, and biquad digital filters
+- **oxiflight-app** — the Embassy async entry point, USB CDC serial, DFU bootloader
+- **oxiflight-hal** — trait definitions (GyroDriver, MotorOutput, etc.)
+- **oxiflight-drivers** — sensor drivers for BMI270 and MPU6000 gyroscopes over SPI
+- **oxiflight-bsp-stm32f4** — board support for SpeedyBee F405 and DarwinFPV F411
+- **oxiflight-math** — pure no_std trigonometry, unit conversions, helpers
+- **oxiflight-filter** — PT1, PT2, PT3, and biquad digital filters
 
 The pure logic crates (math, filter) are fully testable on the host machine — no hardware needed. The hardware crates target `thumbv7em-none-eabihf` (ARM Cortex-M4F with hardware float).
 

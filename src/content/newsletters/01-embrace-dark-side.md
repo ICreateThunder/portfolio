@@ -30,7 +30,7 @@ What happens when Claude goes down? What happens when the output is subtly wrong
 
 ## How I Actually Use It
 
-The way I use Claude is deliberate. For my Rustflight project — an embedded Rust rewrite of Betaflight firmware — Claude generates stubs and phase outlines. I implement them. Claude writes documentation and test scaffolding. I write the driver code, the SPI register sequences, the filter implementations.
+The way I use Claude is deliberate. For my Oxiflight project — an embedded Rust rewrite of Betaflight firmware — Claude generates stubs and phase outlines. I implement them. Claude writes documentation and test scaffolding. I write the driver code, the SPI register sequences, the filter implementations.
 
 The reason is simple. If Claude writes the BMI270 gyro driver for me, I finish faster. But I do not learn why the chip needs a dummy byte on SPI reads, or how Embassy's executor handles interrupt-driven task scheduling. Understanding is the point. The firmware is the proof that I understand.
 
