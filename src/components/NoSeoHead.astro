@@ -1,0 +1,33 @@
+---
+const {
+  title = "Title",
+  description = "Description",
+  url = Astro.url,
+  keywords = "",
+  extraMeta = [],
+} = Astro.props;
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <meta name="robots" content="noindex,nofollow" />
+
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <meta name="description" content={description} />
+  {keywords && <meta name="keywords" content={keywords} />}
+  <link rel="canonical" href={url} />
+
+  {
+    extraMeta.map((m: Metadata) => (
+      <meta name={m.name} property={m.property} content={m.content} />
+    ))
+  }
+
+  <link rel="icon" href="/favicon.svg" />
+
+  <title>{title}</title>
+</head>

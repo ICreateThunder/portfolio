@@ -1,0 +1,169 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Head from "../components/Head.astro";
+import Navigation from "../components/Navigation.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<BaseLayout>
+  <Head
+    slot="head"
+    title="Robert Shalders — Profile"
+    description="Software engineer focused on distributed systems, high-performance computing, and fault-tolerant architecture. Open to new engagements."
+    url={Astro.url.href}
+  />
+  <main class="h-svh md:p-12 p-8 relative overflow-hidden">
+    <div class="flex flex-col-reverse lg:flex-row h-full w-full border-4">
+      <Navigation />
+      <div class="flex flex-col w-full h-full overflow-y-auto animate-fade-in">
+
+        <!-- Header -->
+        <div class="border-b border-neutral-800 p-6 lg:p-8">
+          <p class="text-xs font-semibold text-neutral-500 uppercase tracking-widest mb-1 flicker-b">OPERATIVE_PROFILE</p>
+          <h1 class="text-3xl lg:text-4xl font-black">Robert Shalders</h1>
+          <p class="text-neutral-400 mt-1">Software Engineer</p>
+          <div class="flex gap-4 mt-4">
+            <a
+              href="https://github.com/ICreateThunder"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              class="text-neutral-500 hover:text-teal-400 transition-all duration-150 hover:scale-110"
+            >
+              <Icon name="bi:github" width="20" height="20" aria-hidden="true" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/robertshalders/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              class="text-neutral-500 hover:text-teal-400 transition-all duration-150 hover:scale-110"
+            >
+              <Icon name="bi:linkedin" width="20" height="20" aria-hidden="true" />
+            </a>
+            <a
+              href="mailto:hello@robertshalders.co.uk"
+              aria-label="Email"
+              class="text-neutral-500 hover:text-teal-400 transition-all duration-150 hover:scale-110"
+            >
+              <Icon name="bi:envelope" width="20" height="20" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-neutral-800">
+
+          <!-- Left column -->
+          <div class="flex flex-col divide-y divide-neutral-800">
+
+            <!-- Bio -->
+            <section class="p-6 lg:p-8">
+              <h2 class="text-xs font-semibold text-teal-400 uppercase tracking-widest mb-3">// BIO</h2>
+              <p class="text-neutral-300 text-sm leading-relaxed">
+                Software engineer focused on distributed systems, fault-tolerant
+                architecture, and embedded systems. Most comfortable when things are
+                concurrent, real-time, or unreasonably close to the metal.
+              </p>
+              <p class="text-neutral-400 text-sm leading-relaxed mt-3">
+                Implementing <span class="text-cyan-300 font-semibold">BEAT async BFT</span>
+                consensus protocols in Rust with censorship-resistant networking.
+                Rewriting <span class="text-cyan-300 font-semibold">Betaflight</span>
+                flight controller firmware in embedded Rust for STM32.
+                Training for a commercial pilot's licence.
+              </p>
+            </section>
+
+            <!-- Capabilities -->
+            <section class="p-6 lg:p-8">
+              <h2 class="text-xs font-semibold text-teal-400 uppercase tracking-widest mb-4">// CAPABILITIES</h2>
+              <div class="flex flex-col gap-3 text-sm">
+                <div class="flex justify-between items-center group/row cursor-default transition-colors duration-150 hover:bg-neutral-900 rounded-sm px-2 -mx-2 py-0.5">
+                  <span class="text-neutral-400 transition-colors duration-150 group-hover/row:text-white">SYSTEMS</span>
+                  <span class="text-cyan-300 flicker-a">Rust · C · C++ · STM32</span>
+                </div>
+                <div class="flex justify-between items-center group/row cursor-default transition-colors duration-150 hover:bg-neutral-900 rounded-sm px-2 -mx-2 py-0.5">
+                  <span class="text-neutral-400 transition-colors duration-150 group-hover/row:text-white">BACKEND</span>
+                  <span class="text-cyan-300 flicker-b">Go · Node · Python</span>
+                </div>
+                <div class="flex justify-between items-center group/row cursor-default transition-colors duration-150 hover:bg-neutral-900 rounded-sm px-2 -mx-2 py-0.5">
+                  <span class="text-neutral-400 transition-colors duration-150 group-hover/row:text-white">CLOUD</span>
+                  <span class="text-cyan-300 flicker-c">AWS · Kubernetes · IaC</span>
+                </div>
+                <div class="flex justify-between items-center group/row cursor-default transition-colors duration-150 hover:bg-neutral-900 rounded-sm px-2 -mx-2 py-0.5">
+                  <span class="text-neutral-400 transition-colors duration-150 group-hover/row:text-white">DISTRIBUTED</span>
+                  <span class="text-cyan-300 flicker-a">Event Driven · Fault Tolerant</span>
+                </div>
+                <div class="flex justify-between items-center group/row cursor-default transition-colors duration-150 hover:bg-neutral-900 rounded-sm px-2 -mx-2 py-0.5">
+                  <span class="text-neutral-400 transition-colors duration-150 group-hover/row:text-white">FRONTEND</span>
+                  <span class="text-cyan-300 flicker-b">Astro · Tailwind · TS</span>
+                </div>
+                <div class="flex justify-between items-center group/row cursor-default transition-colors duration-150 hover:bg-neutral-900 rounded-sm px-2 -mx-2 py-0.5">
+                  <span class="text-neutral-400 transition-colors duration-150 group-hover/row:text-white">INFRA</span>
+                  <span class="text-cyan-300 flicker-c">Linux · Docker · CI/CD</span>
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+          <!-- Right column -->
+          <div class="flex flex-col divide-y divide-neutral-800">
+
+            <!-- Availability -->
+            <section class="p-6 lg:p-8">
+              <h2 class="text-xs font-semibold text-teal-400 uppercase tracking-widest mb-3">// AVAILABILITY</h2>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="inline-block w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                <span class="font-semibold text-sm text-teal-400 tracking-wide flicker-a">OPEN TO ENGAGEMENTS</span>
+              </div>
+              <p class="text-neutral-300 text-sm leading-relaxed">
+                Actively seeking Go, Rust, or systems engineering roles.
+                Available for contract and permanent positions.
+                Remote or hybrid preferred. UK-based.
+              </p>
+              <a
+                href="mailto:hello@robertshalders.co.uk?subject=Engagement%20Enquiry&body=Good%20day%2C%0D%0A%0D%0AI%20should%20like%20to%20discuss%20a%20potential%20engagement.%0D%0A%0D%0AKind%20regards%2C"
+                class="relative inline-block overflow-hidden border-teal-400 border-2 mt-4 px-4 py-2 text-sm font-black cta cursor-pointer"
+              >
+                Initiate Contact
+              </a>
+            </section>
+
+            <!-- Interests -->
+            <section class="p-6 lg:p-8">
+              <h2 class="text-xs font-semibold text-teal-400 uppercase tracking-widest mb-3">// SIDE_CHANNELS</h2>
+              <ul class="flex flex-col gap-2 text-sm text-neutral-300">
+                <li class="flex gap-2">
+                  <span class="text-neutral-600 font-semibold select-none">›</span>
+                  <span><span class="text-neutral-500">Aviation</span> — PPL student, all 9 CAA exams passed, 37hrs flight time, Class 1 medical. Working toward a commercial licence.</span>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-neutral-600 font-semibold select-none">›</span>
+                  <span><span class="text-neutral-500">Computer Architecture</span> — Prof. Onur Mutlu's CMU/ETH lectures on memory hierarchies and microarchitecture</span>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-neutral-600 font-semibold select-none">›</span>
+                  <span><span class="text-neutral-500">Embedded</span> — Rustflight: rewriting Betaflight FC firmware in Rust for STM32F4 with Embassy async</span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- Contact -->
+            <section class="p-6 lg:p-8">
+              <h2 class="text-xs font-semibold text-teal-400 uppercase tracking-widest mb-3">// CONTACT</h2>
+              <p class="font-semibold text-sm text-neutral-400 tracking-wide">
+                hello@robertshalders.co.uk
+              </p>
+              <p class="text-xs text-neutral-600 mt-2">
+                For recruitment: please include role, stack, and whether remote is supported.
+              </p>
+            </section>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="absolute animated-background -z-10 animate-shift -inset-full"></div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,94 @@
+---
+import { Icon } from "astro-icon/components";
+
+// Static navigation items
+const pages: NavigationLink[] = [
+  {
+    url: "/",
+    resource: "home",
+    name: "Home",
+    icon: "lsicon:house-outline",
+  },
+  {
+    url: "/profile",
+    resource: "profile",
+    name: "Profile",
+    icon: "lsicon:user-outline",
+  },
+  {
+    url: "/articles",
+    resource: "articles",
+    name: "Articles",
+    icon: "lsicon:report-outline",
+  },
+];
+
+// Parse URL -> slugs
+const slugs: RegExpMatchArray | [] = Astro.url.pathname.match(/[^\/]+/g) ?? [];
+
+// Parse resource (first slug)
+const rawResource = slugs[0] ?? "home";
+
+// Collection pages (projects, newsletters, resources, tricks) should highlight "Articles"
+const articleCollections = ["newsletters", "projects", "resources", "tricks"];
+const resource = articleCollections.includes(rawResource) ? "articles" : rawResource;
+
+---
+
+<nav class="flex md:flex-col justify-evenly shrink-0">
+  <!-- Mobile -->
+  {
+    pages.map(({ url: href, icon: name, name: content, resource: res }) => (
+      <a
+        {href}
+        data-nav-resource={res}
+        aria-current={res === resource ? "page" : undefined}
+        class="flex flex-col justify-center items-center md:hidden flex-1 py-2 no-underline text-neutral-400 hover:text-white transition-all duration-300 aria-[current=page]:text-teal-400"
+      >
+        <Icon {name} width="24" height="24" />
+        <span class="text-xs mt-0.5">{content}</span>
+      </a>
+    ))
+  }
+
+  <!-- Desktop -->
+  {
+    pages.map(({ url: href, name, resource: res }: NavigationLink) => (
+      <a
+        {href}
+        data-nav-resource={res}
+        aria-current={res === resource ? "page" : undefined}
+        class="hidden md:block text-2xl text-indigo-400 cursor-pointer hover:bg-teal-400 hover:text-white align-middle transition-all duration-300 aria-[current=page]:text-teal-400 aria-[current=page]:border-l-4 aria-[current=page]:border-teal-400 aria-[current=page]:pl-2 aria-[current=page]:hover:text-white"
+      >
+        {name}
+      </a>
+    ))
+  }
+
+  <span
+    class="hidden md:block text-slate-400 text-xs select-none lg:whitespace-nowrap"
+  >
+    © Robert Shalders, 2026
+  </span>
+</nav>
+
+<script>
+  const articleCollections = ["newsletters", "projects", "resources", "tricks"];
+
+  function updateActiveNav() {
+    const slugs = window.location.pathname.match(/[^\/]+/g) ?? [];
+    const rawResource = slugs[0] ?? "home";
+    const resource = articleCollections.includes(rawResource) ? "articles" : rawResource;
+
+    document.querySelectorAll("[data-nav-resource]").forEach((link) => {
+      const res = link.getAttribute("data-nav-resource");
+      if (res === resource) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  }
+
+  document.addEventListener("astro:after-swap", updateActiveNav);
+</script>

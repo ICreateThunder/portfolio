@@ -1,0 +1,50 @@
+name: AWS Deployment
+on:
+  push:
+    branches:
+      - main
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Clone Repo
+      - name: Git clone the repository
+        uses: actions/checkout@v5
+      # Retrieve AWS Credentials
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v5.0.0
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          role-session-name: sessionrole
+          aws-region: ${{ secrets.AWS_REGION }}
+      # Install Bun
+      - name: Install Bun
+        run: curl -fsSL https://bun.sh/install | bash
+      # Add Bun to PATH
+      - name: Add Bun to PATH
+        run: echo "$HOME/.bun/bin" >> $GITHUB_PATH
+      # Cache Bun dependencies
+      - name: Cache Bun dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.bun
+            .bun
+          key: bun-deps-${{ hashFiles('bun.lockb') }}
+          restore-keys: |
+            bun-deps-
+      # Install dependencies
+      - name: Install modules with Bun
+        run: bun install
+      # Build application
+      - name: Build application
+        run: bun run build
+      # Update S3 Static Site Bucket
+      - name: Deploy to S3
+        run: aws s3 sync --delete ./dist/ s3://${{ secrets.AWS_BUCKET_NAME }}
+      # Invalidate old site
+      - name: Create CloudFront invalidation
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION }} --paths "/*"

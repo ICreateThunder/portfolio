@@ -1,0 +1,81 @@
+---
+const {
+  title = "Title",
+  description = "Description",
+  url = Astro.url,
+  image = "",
+  locale = "en_GB",
+  type = "website",
+  keywords = "",
+  siteName = "Site",
+  author = "Robert Shalders",
+  publishDate = "",
+  twitterHandle = "@ICreateThunder",
+  extraMeta = [],
+} = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": type,
+  name: title,
+  url: url,
+  description: description,
+  author: author ? { "@type": "Person", name: author } : undefined,
+  image: image ? [image] : undefined,
+  datePublished: publishDate ? publishDate : undefined,
+  publisher: {
+    "@type": "Organization",
+    name: siteName,
+    logo: {
+      "@type": "ImageObject",
+      url: `${url}/assets/logo.png`,
+    },
+  },
+};
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Robert Shalders" href="/rss.xml" />
+
+  <meta name="description" content={description} />
+  {keywords && <meta name="keywords" content={keywords} />}
+  <link rel="canonical" href={url} />
+
+  <meta name="robots" content="index,follow" />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content={type} />
+  <meta property="og:url" content={url} />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:locale" content={locale} />
+  {image && <meta property="og:image" content={image} />}
+  {image && <meta property="og:image:width" content="1200" />}
+  {image && <meta property="og:image:height" content="630" />}
+
+  <meta
+    name="twitter:card"
+    content={image ? "summary_large_image" : "summary"}
+  />
+  <meta name="twitter:creator" content={twitterHandle} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  {image && <meta name="twitter:image" content={image} />}
+
+  <script set:html={JSON.stringify(schema)} type="application/ld+json" />
+
+  {
+    extraMeta.map((m: Metadata) => (
+      <meta name={m.name} property={m.property} content={m.content} />
+    ))
+  }
+
+  <link rel="icon" href="/favicon.svg" />
+
+  <title>{title}</title>
+</head>

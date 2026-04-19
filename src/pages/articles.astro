@@ -1,0 +1,164 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NoSeoHead from "../components/NoSeoHead.astro";
+import Navigation from "../components/Navigation.astro";
+import Drawer from "../components/Drawer.astro";
+import CategoryTabs from "../components/CategoryTabs.astro";
+import { getCollection } from "astro:content";
+import { mostRecentArticles, roundRobin } from "../utils/articles";
+import type { ArticleEntry } from "../content.config";
+
+const newsletters = mostRecentArticles(await getCollection("newsletters"));
+const projects = mostRecentArticles(await getCollection("projects"));
+const resources = mostRecentArticles(await getCollection("resources"));
+const tricks = mostRecentArticles(await getCollection("tricks"));
+
+const allArticles: ArticleEntry[] = roundRobin(newsletters, projects, resources, tricks);
+
+// Limit total articles shown (set to 0 for unlimited)
+const maxArticles = 0;
+
+const articles = maxArticles > 0 ? allArticles.slice(0, maxArticles) : allArticles;
+const featured = articles.slice(0, 4);
+const remaining = articles.slice(4);
+
+
+const chipColors: Record<string, string> = {
+  newsletters: "text-amber-400 border-amber-400/30",
+  projects: "text-cyan-300 border-cyan-300/30",
+  resources: "text-indigo-400 border-indigo-400/30",
+  tricks: "text-teal-400 border-teal-400/30",
+};
+---
+
+<BaseLayout>
+  <NoSeoHead
+    slot="head"
+    title="Articles"
+    description="Collection of articles which may inspire, cause despair or simply have no effect..."
+  />
+  <main class="h-svh min-h-128 md:p-12 p-8 relative overflow-hidden">
+    <div class="flex flex-col-reverse lg:flex-row h-full w-full border-4 overflow-hidden">
+      <Navigation />
+      <div
+        class="flex flex-col flex-1 min-h-0 w-full border-b-4 sm:border-0 relative"
+      >
+        <CategoryTabs />
+
+        <!-- Content area + Drawer side-by-side -->
+        <div class="flex flex-1 min-h-0 relative">
+          <div class="flex-1 h-full overflow-y-auto animate-fade-in">
+
+            {articles.length > 0 ? (
+              <div class="p-4 flex flex-col gap-6">
+
+                {/* Featured: grid cards (top 4) */}
+                {featured.length > 0 && (
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {featured.map((entry) => {
+                      const date = new Date(entry.data.published);
+                      const formatted = `${date.getDate().toString().padStart(2, "0")}·${(date.getMonth() + 1).toString().padStart(2, "0")}·${date.getFullYear()}`;
+                      const chip = chipColors[entry.collection] ?? "text-neutral-400 border-neutral-400/30";
+
+                      return (
+                        <a href={`/${entry.collection}/${entry.data.slug}`} class="group">
+                          <article class="flex flex-col border border-neutral-800 overflow-hidden transition-all duration-200 hover:border-teal-400 hover:-translate-y-0.5 hover:shadow-[0_4px_20px_oklch(78.9%_0.154_211.53_/_0.15)]">
+                            <div class="w-full h-32 md:h-36 overflow-hidden">
+                              <img
+                                class="w-full h-full object-cover object-center saturate-0 contrast-125 brightness-75 transition-all duration-300 group-hover:saturate-100 group-hover:contrast-100 group-hover:brightness-90"
+                                src={entry.data.image ?? "/fallback.jpg"}
+                                alt={entry.data.title}
+                              />
+                            </div>
+                            <div class="p-3">
+                              <div class="flex items-center gap-2 mb-2">
+                                <span class={`text-[0.6rem] uppercase tracking-widest border px-1.5 py-0.5 ${chip}`}>
+                                  {entry.collection}
+                                </span>
+                                <span class="text-[0.6rem] text-neutral-600">{formatted}</span>
+                              </div>
+                              <p class="text-sm text-neutral-300 leading-snug transition-colors duration-200 group-hover:text-white">
+                                {entry.data.title}
+                              </p>
+                              {entry.data.description && (
+                                <p class="text-xs text-neutral-500 mt-1 line-clamp-2">{entry.data.description}</p>
+                              )}
+                            </div>
+                          </article>
+                        </a>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* Remaining: bordered cards */}
+                {remaining.length > 0 && (
+                  <div class="flex flex-col gap-3">
+                    {remaining.map((entry) => {
+                      const date = new Date(entry.data.published);
+                      const formatted = `${date.getDate().toString().padStart(2, "0")}·${(date.getMonth() + 1).toString().padStart(2, "0")}·${date.getFullYear()}`;
+                      const chip = chipColors[entry.collection] ?? "text-neutral-400 border-neutral-400/30";
+
+                      return (
+                        <a href={`/${entry.collection}/${entry.data.slug}`} class="group">
+                          <article class="flex items-center gap-4 p-4 border border-neutral-800 transition-all duration-200 hover:border-teal-400 hover:shadow-[0_0_12px_oklch(78.9%_0.154_211.53_/_0.2)]">
+                            <div class="w-14 h-14 md:w-18 md:h-18 overflow-hidden rounded-sm shrink-0">
+                              <img
+                                class="w-full h-full object-cover object-center saturate-0 contrast-125 brightness-75 transition-all duration-300 group-hover:saturate-100 group-hover:contrast-100 group-hover:brightness-90"
+                                src={entry.data.image ?? "/fallback.jpg"}
+                                alt={entry.data.title}
+                              />
+                            </div>
+                            <div class="flex-1 min-w-0">
+                              <div class="flex items-center gap-2 mb-1">
+                                <span class={`text-[0.6rem] uppercase tracking-widest border px-1.5 py-0.5 ${chip}`}>
+                                  {entry.collection}
+                                </span>
+                                <span class="text-[0.6rem] text-neutral-600">{formatted}</span>
+                              </div>
+                              <p class="text-sm text-neutral-300 leading-snug transition-colors duration-200 group-hover:text-white">
+                                {entry.data.title}
+                              </p>
+                              {entry.data.description && (
+                                <p class="text-xs text-neutral-500 mt-1 line-clamp-2">{entry.data.description}</p>
+                              )}
+                            </div>
+                          </article>
+                        </a>
+                      );
+                    })}
+                  </div>
+                )}
+
+              </div>
+            ) : (
+              <div class="flex flex-col items-center justify-center w-full h-full text-neutral-400 text-center p-8">
+                <h2 class="text-2xl font-bold mb-2 flicker-a">
+                  SYSTEM ALERT: CONTENT UNAVAILABLE
+                </h2>
+                <p class="text-sm flicker-b">
+                  No articles detected. Recalibration recommended.
+                </p>
+              </div>
+            )}
+          </div>
+
+          <!-- Mobile Side Navigation -->
+          <Drawer tabText="Categories" side="right">
+            <ul
+              class="flex flex-col h-full justify-evenly items-center text-xl"
+            >
+              <li><a href="/articles" class="text-black font-bold underline underline-offset-4">All</a></li>
+              <li><a href="/newsletters" class="text-neutral-700 hover:text-black hover:underline">Newsletters</a></li>
+              <li><a href="/projects" class="text-neutral-700 hover:text-black hover:underline">Projects</a></li>
+              <li><a href="/resources" class="text-neutral-700 hover:text-black hover:underline">Resources</a></li>
+              <li><a href="/tricks" class="text-neutral-700 hover:text-black hover:underline">Tips &amp; Tricks</a></li>
+            </ul>
+          </Drawer>
+        </div>
+      </div>
+    </div>
+    <div class="absolute animated-background -z-10 animate-shift -inset-full">
+    </div>
+  </main>
+</BaseLayout>

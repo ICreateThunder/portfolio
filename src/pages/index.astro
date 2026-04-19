@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Head from "../components/Head.astro";
+import NavigationItems from "../components/NavigationItems.astro";
+
+import { Icon } from "astro-icon/components";
+---
+
+<BaseLayout>
+  <Head
+    slot="head"
+    title="Shalders' Site"
+    siteName="Robert Shalders"
+    description="Software engineer focused on distributed systems, embedded Rust, and high-performance computing."
+  />
+  <main
+    class="h-svh min-h-142 md:min-h-117 lg:min-h-192 md:p-12 p-8 relative overflow-hidden"
+  >
+    <div
+      class="flex flex-col-reverse lg:flex-row h-full w-full border-4 justify-between"
+    >
+      <div
+        class="flex flex-col animate-fade-in p-8 justify-end lg:h-full lg:justify-between"
+      >
+        <div class="hidden lg:flex flex-col select-none">
+          <span
+            class="text-3xl lg:text-6xl font-thin motion-safe:animate-slide-down hero-text"
+            >Active</span
+          >
+          <span
+            class="text-3xl lg:text-6xl font-extralight motion-safe:animate-slide-down hero-text"
+            >Active</span
+          >
+          <span
+            class="text-3xl lg:text-6xl font-normal motion-safe:animate-slide-down hero-text"
+            >Active</span
+          >
+          <span
+            class="text-3xl lg:text-6xl font-bold motion-safe:animate-slide-down hero-text"
+            >Active</span
+          >
+          <span
+            class="text-3xl lg:text-6xl font-black motion-safe:animate-slide-down hero-text"
+            >Active</span
+          >
+          <a
+            href="mailto:hello@robertshalders.co.uk?subject=Request%20for%20Consultation&body=Good%20day,%0D%0A%0D%0AI%20should%20like%20to%20discuss%20a%20potential%20engagement.%0D%0A%0D%0AKind%20regards,"
+            class="relative inline-block overflow-hidden border-teal-400 border-4 my-6 p-2 pt-1.5 text-3xl font-black animate-fade-in delay-1200 cta cursor-pointer"
+            >Engage My<br />Services</a
+          >
+        </div>
+        <NavigationItems />
+      </div>
+      <div
+        class="flex flex-col h-full gap-y-32 md:gap-y-8 justify-center items-center w-full p-8 lg:p-0 select-none"
+      >
+        <div
+          class="flex flex-col justify-center items-center text-center gap-y-8 md:gap-y-6"
+        >
+          <p class="text-sm uppercase tracking-widest text-neutral-500">Hi, I'm</p>
+          <h1 class="font-bebas text-6xl md:text-7xl lg:text-8xl uppercase tracking-wide text-black leading-none glitch hero-3d" data-text="Robert Shalders">
+            Robert Shalders<span class="animate-blink">_</span>
+          </h1>
+          <p class="text-sm text-neutral-400 tracking-wide">Software Engineer<span class="secret hidden" aria-hidden="true"> — the noise is not decorative</span></p>
+        </div>
+        <div class="flex gap-6 lg:gap-8 lg:py-12">
+          <a
+            href="https://github.com/ICreateThunder"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Robert Shalders on GitHub"
+            class="p-2 transition-transform duration-150 hover:scale-110 hover:text-teal-400"
+          >
+            <Icon
+              name="bi:github"
+              width="32"
+              height="32"
+              aria-hidden="true"
+              focusable="false"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/robertshalders/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Robert Shalders on LinkedIn"
+            class="p-2 transition-transform duration-150 hover:scale-110 hover:text-teal-400"
+          >
+            <Icon
+              name="bi:linkedin"
+              width="32"
+              height="32"
+              aria-hidden="true"
+              focusable="false"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="absolute animated-background -z-10 animate-shift -inset-full">
+    </div>
+  </main>
+</BaseLayout>

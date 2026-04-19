@@ -1,0 +1,52 @@
+---
+const categories = [
+  { href: "/articles", label: "All", resource: "articles" },
+  { href: "/newsletters", label: "Newsletters", resource: "newsletters" },
+  { href: "/projects", label: "Projects", resource: "projects" },
+  { href: "/resources", label: "Resources", resource: "resources" },
+  { href: "/tricks", label: "Tips & Tricks", resource: "tricks" },
+];
+
+const slugs: RegExpMatchArray | [] = Astro.url.pathname.match(/[^\/]+/g) ?? [];
+const rawResource = slugs[0] ?? "articles";
+const activeResource = rawResource === "articles" ? "articles" : rawResource;
+---
+
+<div class="hidden sm:flex items-center gap-1 px-4 py-3 border-b border-neutral-800 shrink-0" transition:persist="category-tabs">
+  {categories.map(({ href, label, resource }) => (
+    <a
+      {href}
+      data-cat-resource={resource}
+      class:list={[
+        "px-3 py-1.5 text-xs uppercase tracking-widest transition-all duration-300",
+        resource === activeResource
+          ? "text-teal-400 border-b-2 border-teal-400 font-semibold"
+          : "text-neutral-500 hover:text-neutral-300 border-b-2 border-transparent",
+      ]}
+    >
+      {label}
+    </a>
+  ))}
+</div>
+
+<script>
+  function updateActiveCategoryTab() {
+    const slugs = window.location.pathname.match(/[^\/]+/g) ?? [];
+    const rawResource = slugs[0] ?? "articles";
+    // On /articles page, active is "articles". On collection pages, active is the collection name.
+    const activeResource = rawResource === "articles" ? "articles" : rawResource;
+
+    document.querySelectorAll("[data-cat-resource]").forEach((link) => {
+      const res = link.getAttribute("data-cat-resource");
+      if (res === activeResource) {
+        link.classList.add("text-teal-400", "border-teal-400", "font-semibold");
+        link.classList.remove("text-neutral-500", "border-transparent");
+      } else {
+        link.classList.remove("text-teal-400", "border-teal-400", "font-semibold");
+        link.classList.add("text-neutral-500", "border-transparent");
+      }
+    });
+  }
+
+  document.addEventListener("astro:after-swap", updateActiveCategoryTab);
+</script>

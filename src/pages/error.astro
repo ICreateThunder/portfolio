@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NoSeoHead from "../components/NoSeoHead.astro";
+import Navigation from "../components/Navigation.astro";
+
+import { Icon } from "astro-icon/components";
+---
+
+<BaseLayout>
+  <NoSeoHead
+    slot="head"
+    title="Error Page"
+    description="Something has gone awry..."
+  />
+  <main class="h-screen min-h-128 md:p-12 p-8 relative overflow-hidden">
+    <div class="flex flex-col-reverse lg:flex-row h-full w-full border-4">
+      <Navigation />
+      <div
+        class="flex flex-col gap-y-8 justify-center items-center w-full p-4 lg:p-0 mb-16 lg:m-9"
+      >
+        <div class="flex flex-col justify-center items-center gap-y-4">
+          <Icon name="bi:bug" width="64" height="64" />
+          <span class="text-2xl">Something went wrong...</span>
+        </div>
+      </div>
+    </div>
+    <div class="absolute animated-background -z-10 animate-shift -inset-full">
+    </div>
+  </main>
+</BaseLayout>

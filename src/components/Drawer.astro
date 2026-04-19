@@ -1,0 +1,82 @@
+---
+const {
+  tabText = "Drawer",
+  tabIcon = "lsicon:menu-endways-filled",
+  side = "left",
+} = Astro.props;
+
+import { Icon } from "astro-icon/components";
+
+const borderSide = side === "left" ? "border-r-4" : "border-l-4";
+const openingDirection = side === "left" ? "justify-start" : "justify-end";
+const textDirection =
+  side === "left" ? "writing-sideways-lr" : "writing-sideways-rl";
+---
+
+<astro-drawer class={"flex h-full " + openingDirection}>
+  <div
+    class="absolute w-0 h-full bg-amber-400 sm:hidden z-30 transition-all duration-200 overflow-hidden"
+  >
+    <content class="opacity-0 h-full">
+      <slot />
+    </content>
+  </div>
+  <button
+    type="button"
+    class={"flex flex-col gap-4 sm:hidden h-full bg-amber-400 text-black border-white w-12 justify-center items-center z-20 relative " +
+      borderSide}
+  >
+    <span class={"text-xl select-none " + textDirection}>{tabText}</span>
+    <Icon
+      class="animate-pulse pointer-events-none"
+      name={tabIcon}
+      width="32"
+      height="32"
+      aria-hidden="true"
+      focusable="false"
+    />
+  </button>
+</astro-drawer>
+
+<script>
+  class Drawer extends HTMLElement {
+    updateRender = (status: Boolean) => {
+      const drawer = this.querySelector("div");
+      const drawerContent = this.querySelector("content");
+
+      if (status) {
+        drawer?.classList.add("w-full");
+        drawerContent?.classList.add("transition-opacity");
+        drawerContent?.classList.add("duration-200");
+        drawerContent?.classList.add("delay-200");
+        drawerContent?.classList.remove("opacity-0");
+      } else {
+        drawer?.classList.remove("w-full");
+        drawerContent?.classList.remove("transition-opacity");
+        drawerContent?.classList.remove("duration-200");
+        drawerContent?.classList.remove("delay-200");
+        drawerContent?.classList.add("opacity-0");
+      }
+    };
+
+    connectedCallback() {
+      let open: Boolean = false;
+
+      const toggle = this.querySelector("button");
+      const drawer = this.querySelector("div");
+
+      toggle?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        open = !open;
+        this.updateRender(open);
+      });
+
+      drawer?.addEventListener("click", () => {
+        open = false;
+        this.updateRender(open);
+      });
+    }
+  }
+
+  customElements.define("astro-drawer", Drawer);
+</script>

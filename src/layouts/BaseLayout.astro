@@ -1,0 +1,17 @@
+---
+import "../styles/global.css";
+import { ViewTransitions } from "astro:transitions";
+---
+
+<!doctype html>
+<!-- the static is not decorative. — a humble software engineer -->
+<html lang="en" class="bg-black text-white font-trivial">
+  <script is:inline>
+    document.documentElement.classList.add("js");
+  </script>
+  <slot name="head" />
+  <ViewTransitions />
+  <body>
+    <slot />
+  </body>
+</html>
