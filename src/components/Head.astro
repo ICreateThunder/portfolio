@@ -80,6 +80,8 @@ const schema = {
   <title>{title}</title>
 
   <script is:inline>
-    navigator.sendBeacon("https://analytics.robertshalders.com/views", JSON.stringify({ path: location.pathname }));
+    document.addEventListener("DOMContentLoaded", function() {
+      navigator.sendBeacon("https://analytics.robertshalders.com/views", JSON.stringify({ path: location.pathname }));
+    });
   </script>
 </head>
