@@ -79,7 +79,7 @@ const schema = {
 
   <title>{title}</title>
 
-  <script>
+  <script is:inline>
     navigator.sendBeacon("https://analytics.robertshalders.com/views", JSON.stringify({ path: location.pathname }));
   </script>
 </head>
