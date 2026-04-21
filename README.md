@@ -50,6 +50,14 @@ public/
 
 This site was built with assistance from [Claude](https://claude.ai) and [GPT-OSS](https://github.com/openai/gpt-oss) (self-hosted). AI tools were used for scaffolding, iteration, and content drafting. Design decisions, architecture, and final content are my own.
 
+## Analytics
+
+Privacy-respecting page view counter. No IPs stored, no cookies, no PII. Infrastructure is kept in a private location.
+
+## TODO
+
+- [ ] Replace stock article images with real project screenshots/diagrams
+
 ## License
 
 MIT. See [LICENSE](LICENSE).

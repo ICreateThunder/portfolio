@@ -5,7 +5,7 @@ slug: "foundation-consensus"
 published: 2026-03-20
 tags: ["distributed-systems", "consensus", "fault-tolerant", "event-driven", "cryptography", "networking"]
 author: "Robert Shalders"
-image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=60"
+image: "/images/articles/foundation-consensus.jpg"
 ---
 
 ## What Is This

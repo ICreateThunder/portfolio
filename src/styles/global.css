@@ -466,13 +466,50 @@
 }
 
 
-/* Hidden easter egg text — visible only on text selection */
-.secret {
-  color: transparent;
-  user-select: text;
-  cursor: default;
+/* Project marquee — slow infinite scroll */
+.marquee-fade {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
-.secret::selection {
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 40s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+.marquee-content {
+  display: flex;
+  gap: 2rem;
+  padding: 0.75rem 1rem;
+  flex-shrink: 0;
+}
+.marquee-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid oklch(25% 0.02 211);
+  border-radius: 0;
+  transition: all 150ms ease;
+  white-space: nowrap;
+}
+.marquee-card:hover {
+  border-color: oklch(78.9% 0.154 211.53);
+}
+.marquee-card:hover span:first-child {
   color: oklch(78.9% 0.154 211.53);
-  background-color: oklch(20% 0.05 211.53);
 }
+.marquee-card:hover span:last-child {
+  color: oklch(60% 0 0);
+}
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+

@@ -10,7 +10,7 @@ const baseArticleSchema = z.object({
   published: z.preprocess((val) => new Date(val), z.date()),
   tags: z.array(z.string()).optional(),
   author: z.string().optional().default("Robert Shalders"),
-  image: z.string().url().optional(),
+  image: z.string().optional(),
   references: z
     .array(
       z.object({

@@ -30,3 +30,6 @@ cv/
 
 # Draft articles — personal/unpublished
 drafts/
+
+# Infrastructure — kept private (security through obscurity for countermeasures)
+infrastructure/

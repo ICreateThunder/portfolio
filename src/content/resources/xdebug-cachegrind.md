@@ -5,7 +5,7 @@ slug: "xdebug-cachegrind-profiling"
 published: 2026-03-18
 tags: ["php", "performance", "xdebug", "cachegrind", "profiling", "legacy"]
 author: "Robert Shalders"
-image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60"
+image: "/images/articles/xdebug-cachegrind.jpg"
 ---
 
 ## The Principle

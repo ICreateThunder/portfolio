@@ -5,7 +5,7 @@ slug: "02-building-in-public"
 published: 2026-04-19
 tags: ["career", "github", "open-source", "opinion", "honesty"]
 author: "Robert Shalders"
-image: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?auto=format&fit=crop&w=800&q=60"
+image: "/images/articles/building-in-public.jpg"
 ---
 
 ## In This Issue

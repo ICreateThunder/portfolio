@@ -22,7 +22,7 @@ import { Icon } from "astro-icon/components";
       <div
         class="flex flex-col animate-fade-in p-8 justify-end lg:h-full lg:justify-between"
       >
-        <div class="hidden lg:flex flex-col select-none">
+        <div class="hidden lg:flex flex-col select-none" aria-hidden="true">
           <span
             class="text-3xl lg:text-6xl font-thin motion-safe:animate-slide-down hero-text"
             >Active</span
@@ -44,56 +44,98 @@ import { Icon } from "astro-icon/components";
             >Active</span
           >
           <a
-            href="mailto:hello@robertshalders.co.uk?subject=Request%20for%20Consultation&body=Good%20day,%0D%0A%0D%0AI%20should%20like%20to%20discuss%20a%20potential%20engagement.%0D%0A%0D%0AKind%20regards,"
+            href="mailto:robert@shalders.co.uk?subject=Enquiry"
             class="relative inline-block overflow-hidden border-teal-400 border-4 my-6 p-2 pt-1.5 text-3xl font-black animate-fade-in delay-1200 cta cursor-pointer"
-            >Engage My<br />Services</a
+            >Make<br />Contact</a
           >
         </div>
         <NavigationItems />
       </div>
       <div
-        class="flex flex-col h-full gap-y-32 md:gap-y-8 justify-center items-center w-full p-8 lg:p-0 select-none"
+        class="flex flex-col h-full w-full min-w-0 select-none"
       >
-        <div
-          class="flex flex-col justify-center items-center text-center gap-y-8 md:gap-y-6"
-        >
+        <!-- Hero content — 60% -->
+        <div class="flex flex-col justify-center items-center flex-1 gap-y-8 md:gap-y-6 p-8 lg:p-0">
           <p class="text-sm uppercase tracking-widest text-neutral-500">Hi, I'm</p>
           <h1 class="font-bebas text-6xl md:text-7xl lg:text-8xl uppercase tracking-wide text-black leading-none glitch hero-3d" data-text="Robert Shalders">
             Robert Shalders<span class="animate-blink">_</span>
           </h1>
-          <p class="text-sm text-neutral-400 tracking-wide">Software Engineer<span class="secret hidden" aria-hidden="true"> — the noise is not decorative</span></p>
+          <p class="text-sm text-neutral-400 tracking-wide">Software Engineer</p>
+          <div class="flex gap-6 lg:gap-8 pt-4">
+            <a
+              href="https://github.com/ICreateThunder"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Robert Shalders on GitHub"
+              class="p-2 transition-transform duration-150 hover:scale-110 hover:text-teal-400"
+            >
+              <Icon
+                name="bi:github"
+                width="32"
+                height="32"
+                aria-hidden="true"
+                focusable="false"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/robertshalders/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Robert Shalders on LinkedIn"
+              class="p-2 transition-transform duration-150 hover:scale-110 hover:text-teal-400"
+            >
+              <Icon
+                name="bi:linkedin"
+                width="32"
+                height="32"
+                aria-hidden="true"
+                focusable="false"
+              />
+            </a>
+          </div>
         </div>
-        <div class="flex gap-6 lg:gap-8 lg:py-12">
-          <a
-            href="https://github.com/ICreateThunder"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Robert Shalders on GitHub"
-            class="p-2 transition-transform duration-150 hover:scale-110 hover:text-teal-400"
-          >
-            <Icon
-              name="bi:github"
-              width="32"
-              height="32"
-              aria-hidden="true"
-              focusable="false"
-            />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/robertshalders/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Robert Shalders on LinkedIn"
-            class="p-2 transition-transform duration-150 hover:scale-110 hover:text-teal-400"
-          >
-            <Icon
-              name="bi:linkedin"
-              width="32"
-              height="32"
-              aria-hidden="true"
-              focusable="false"
-            />
-          </a>
+        <!-- Marquee — 40%, desktop only -->
+        <div class="hidden lg:flex justify-center items-center shrink-0 w-full">
+          <div class="w-full overflow-hidden border-t border-b border-neutral-800 marquee-fade" aria-label="Featured projects">
+          <div class="marquee-track">
+            <div class="marquee-content">
+              <a href="https://github.com/ICreateThunder/oxiflight" target="_blank" rel="noopener noreferrer" class="marquee-card">
+                <span class="text-neutral-500 text-xs uppercase tracking-widest">Oxiflight</span>
+                <span class="text-neutral-600 text-xs">Betaflight FC firmware rewritten in embedded Rust for STM32</span>
+              </a>
+              <a href="https://github.com/ICreateThunder/foundation" target="_blank" rel="noopener noreferrer" class="marquee-card">
+                <span class="text-neutral-500 text-xs uppercase tracking-widest">Foundation</span>
+                <span class="text-neutral-600 text-xs">BEAT async BFT consensus protocol in Rust</span>
+              </a>
+              <a href="https://github.com/ICreateThunder/cognosco" target="_blank" rel="noopener noreferrer" class="marquee-card">
+                <span class="text-neutral-500 text-xs uppercase tracking-widest">Cognosco</span>
+                <span class="text-neutral-600 text-xs">Game engine built from scratch in C++</span>
+              </a>
+              <a href="https://github.com/ICreateThunder/portfolio" target="_blank" rel="noopener noreferrer" class="marquee-card">
+                <span class="text-neutral-500 text-xs uppercase tracking-widest">Portfolio</span>
+                <span class="text-neutral-600 text-xs">This site — Astro, Tailwind, deployed on AWS</span>
+              </a>
+            </div>
+            <div class="marquee-content" aria-hidden="true">
+              <a href="https://github.com/ICreateThunder/oxiflight" target="_blank" rel="noopener noreferrer" class="marquee-card" tabindex="-1">
+                <span class="text-neutral-500 text-xs uppercase tracking-widest">Oxiflight</span>
+                <span class="text-neutral-600 text-xs">Betaflight FC firmware rewritten in embedded Rust for STM32</span>
+              </a>
+              <a href="https://github.com/ICreateThunder/foundation" target="_blank" rel="noopener noreferrer" class="marquee-card" tabindex="-1">
+                <span class="text-neutral-500 text-xs uppercase tracking-widest">Foundation</span>
+                <span class="text-neutral-600 text-xs">BEAT async BFT consensus protocol in Rust</span>
+              </a>
+              <a href="https://github.com/ICreateThunder/cognosco" target="_blank" rel="noopener noreferrer" class="marquee-card" tabindex="-1">
+                <span class="text-neutral-500 text-xs uppercase tracking-widest">Cognosco</span>
+                <span class="text-neutral-600 text-xs">Game engine built from scratch in C++</span>
+              </a>
+              <a href="https://github.com/ICreateThunder/portfolio" target="_blank" rel="noopener noreferrer" class="marquee-card" tabindex="-1">
+                <span class="text-neutral-500 text-xs uppercase tracking-widest">Portfolio</span>
+                <span class="text-neutral-600 text-xs">This site — Astro, Tailwind, deployed on AWS</span>
+              </a>
+            </div>
+          </div>
+          </div>
         </div>
       </div>
     </div>

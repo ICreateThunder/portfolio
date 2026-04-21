@@ -5,7 +5,7 @@ slug: "copy-as-curl"
 published: 2026-03-16
 tags: ["curl", "devtools", "debugging", "bash", "http", "testing"]
 author: "Robert Shalders"
-image: "https://images.unsplash.com/photo-1629654291663-b91ad427698f?auto=format&fit=crop&w=800&q=60"
+image: "/images/articles/copy-as-curl.jpg"
 ---
 
 ## The Trick

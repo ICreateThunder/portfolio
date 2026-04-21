@@ -5,7 +5,7 @@ slug: "cache-hierarchy-dissertation"
 published: 2023-06-15
 tags: ["performance", "cache", "computer-architecture", "c", "valgrind", "dissertation"]
 author: "Robert Shalders"
-image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=60"
+image: "/images/articles/cache-hierarchy.jpg"
 ---
 
 ## The Question

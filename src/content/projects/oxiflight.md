@@ -5,7 +5,7 @@ slug: "oxiflight"
 published: 2026-04-01
 tags: ["rust", "embedded", "stm32", "betaflight", "firmware", "no-std"]
 author: "Robert Shalders"
-image: "https://images.unsplash.com/photo-1699084582693-e53096751634?auto=format&fit=crop&w=800&q=60"
+image: "/images/articles/oxiflight.jpg"
 ---
 
 ## How It Started

@@ -5,7 +5,7 @@ slug: "01-embrace-dark-side"
 published: 2026-03-23
 tags: ["ai", "claude", "tooling", "workflow", "opinion"]
 author: "Robert Shalders"
-image: "https://images.unsplash.com/photo-1738107445898-2ea37e291bca?auto=format&fit=crop&w=800&q=60"
+image: "/images/articles/embrace-dark-side.jpg"
 ---
 
 ## The Speed Is Real
