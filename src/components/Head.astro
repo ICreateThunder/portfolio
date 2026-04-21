@@ -81,7 +81,7 @@ const schema = {
 
   <script is:inline>
     document.addEventListener("DOMContentLoaded", function() {
-      navigator.sendBeacon("https://analytics.robertshalders.com/views", JSON.stringify({ path: location.pathname }));
+      navigator.sendBeacon("https://analytics.robertshalders.com/views", new Blob([JSON.stringify({ path: location.pathname })], { type: "application/json" }));
     });
   </script>
 </head>
